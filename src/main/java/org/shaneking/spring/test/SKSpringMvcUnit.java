@@ -2,16 +2,14 @@ package org.shaneking.spring.test;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
-import org.junit.runner.RunWith;
+import lombok.Getter;
 import org.shaneking.skava.io.FTN;
 import org.shaneking.skava.lang.String0;
 import org.shaneking.skava.util.UUID0;
-import org.shaneking.test.SKUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -30,9 +28,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
-@RunWith(SpringRunner.class)
-public class SKSpringMvcUnit extends SKUnit {
+public class SKSpringMvcUnit extends SKSpringUnit {
   @Autowired
+  @Getter
   public MockMvc mockMvc;
 
   public MockHttpServletRequestBuilder cookie(MockHttpServletRequestBuilder mockHttpServletRequestBuilder) {
@@ -69,42 +67,42 @@ public class SKSpringMvcUnit extends SKUnit {
   }
 
   public void performJFJ(String url) throws Exception {
-    performJFJ(url, skTestITxtFiles());
+    performJFJ(url, tstITxtFiles());
   }
 
   public void performJFT(String url) throws Exception {
-    performJFT(url, skTestITxtFiles());
+    performJFT(url, tstITxtFiles());
   }
 
   public void performJFJ(String url, File reqAttachFile) throws Exception {
-    perform(url, skTestIJsonFiles(), reqAttachFile, skTestOJsonFiles(), null);
+    perform(url, tstIJsonFiles(), reqAttachFile, tstOJsonFiles(), null);
   }
 
   public void performJFT(String url, File reqAttachFile) throws Exception {
-    perform(url, skTestIJsonFiles(), reqAttachFile, null, skTestOTxtFiles());
+    perform(url, tstIJsonFiles(), reqAttachFile, null, tstOTxtFiles());
   }
 
   public void performJJ(String url) throws Exception {
-    perform(url, skTestIJsonFiles(), null, skTestOJsonFiles(), null);
+    perform(url, tstIJsonFiles(), null, tstOJsonFiles(), null);
   }
 
   public void performJT(String url) throws Exception {
-    perform(url, skTestIJsonFiles(), null, null, skTestOTxtFiles());
+    perform(url, tstIJsonFiles(), null, null, tstOTxtFiles());
   }
 
-  public File skTestIJsonFiles() {
-    return skTestIFiles(FTN.JSON);
+  public File tstIJsonFiles() {
+    return tstIFiles(FTN.JSON);
   }
 
-  public File skTestITxtFiles() {
-    return skTestIFiles(FTN.TXT);
+  public File tstITxtFiles() {
+    return tstIFiles(FTN.TXT);
   }
 
-  public File skTestOJsonFiles() {
-    return skTestOFiles(FTN.JSON);
+  public File tstOJsonFiles() {
+    return tstOFiles(FTN.JSON);
   }
 
-  public File skTestOTxtFiles() {
-    return skTestOFiles(FTN.TXT);
+  public File tstOTxtFiles() {
+    return tstOFiles(FTN.TXT);
   }
 }

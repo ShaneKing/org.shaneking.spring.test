@@ -9,6 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class SKSpringMvcUnitTest extends SKSpringMvcUnit {
   @Test
   public void empty() {
-    skPrint("empty");
+    tstPrint("empty");
   }
 }
