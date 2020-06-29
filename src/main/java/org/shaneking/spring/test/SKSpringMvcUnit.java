@@ -63,8 +63,7 @@ public class SKSpringMvcUnit extends SKSpringUnit {
     return mockHttpServletRequestBuilder.contentType(MediaType.MULTIPART_FORM_DATA);
   }
 
-  public void perform(String url, File reqJsonFile, File reqAttachFile, File respJsonFile, File respTxtFile) throws Exception {
-    String uuid1 = UUID0.cMl33();
+  public ResultActions perform(String url, File reqJsonFile, File reqAttachFile, File respJsonFile, File respTxtFile) throws Exception {
     Map<String, String> replaceMap = Maps.newHashMap();
     this.getTstReplaceMap().keySet().parallelStream().forEach(k -> replaceMap.put(k, this.getTstReplaceMap().get(k).next()));
     String reqStr = Joiner.on(String0.EMPTY).join(Files.readAllLines(reqJsonFile.toPath(), StandardCharsets.UTF_8));
@@ -95,30 +94,31 @@ public class SKSpringMvcUnit extends SKSpringUnit {
         }
       }
     }
+    return resultActions;
   }
 
-  public void performJFJ(String url) throws Exception {
-    performJFJ(url, tstITxtFiles());
+  public ResultActions performJFJ(String url) throws Exception {
+    return performJFJ(url, tstITxtFiles());
   }
 
-  public void performJFT(String url) throws Exception {
-    performJFT(url, tstITxtFiles());
+  public ResultActions performJFT(String url) throws Exception {
+    return performJFT(url, tstITxtFiles());
   }
 
-  public void performJFJ(String url, File reqAttachFile) throws Exception {
-    perform(url, tstIJsonFiles(), reqAttachFile, tstOJsonFiles(), null);
+  public ResultActions performJFJ(String url, File reqAttachFile) throws Exception {
+    return perform(url, tstIJsonFiles(), reqAttachFile, tstOJsonFiles(), null);
   }
 
-  public void performJFT(String url, File reqAttachFile) throws Exception {
-    perform(url, tstIJsonFiles(), reqAttachFile, null, tstOTxtFiles());
+  public ResultActions performJFT(String url, File reqAttachFile) throws Exception {
+    return perform(url, tstIJsonFiles(), reqAttachFile, null, tstOTxtFiles());
   }
 
-  public void performJJ(String url) throws Exception {
-    perform(url, tstIJsonFiles(), null, tstOJsonFiles(), null);
+  public ResultActions performJJ(String url) throws Exception {
+    return perform(url, tstIJsonFiles(), null, tstOJsonFiles(), null);
   }
 
-  public void performJT(String url) throws Exception {
-    perform(url, tstIJsonFiles(), null, null, tstOTxtFiles());
+  public ResultActions performJT(String url) throws Exception {
+    return perform(url, tstIJsonFiles(), null, null, tstOTxtFiles());
   }
 
   public File tstIJsonFiles() {
